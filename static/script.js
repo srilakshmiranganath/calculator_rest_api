@@ -19,15 +19,10 @@ form.addEventListener("submit", async (event) => {
         }
     })
         .then(response => response.json())
-        .then(json => console.log(json))
-        .then(json => appendData(json))
+        .then(data => {
+            const resultDiv = document.querySelector('#result');
+            resultDiv.innerHTML = `<pre>${JSON.stringify(data.CalcResult.result, null, 2)}</pre>`;
+        })
         .catch(err => console.log(err));    
-
-    function appendData(data){
-        var mainContainer = document.getElementById("answer");
-        var div = document.createElement("div");
-        div.innerHTML = 'RESULT : ' + data[0].result;
-        mainContainer.appendChild(div);
-    }
       
 });
